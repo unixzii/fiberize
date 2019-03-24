@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/unixzii/xxx.git"
+    "url": "git://github.com/unixzii/fiberize.git"
   },
   "keywords": [
     "fiber",
@@ -20,9 +20,9 @@
   "author": "Cyandev <unixzii@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/unixzii/xxx/issues"
+    "url": "https://github.com/unixzii/fiberize/issues"
   },
-  "homepage": "https://github.com/unixzii/xxx#readme",
+  "homepage": "https://github.com/unixzii/fiberize#readme",
   "dependencies": {
     "invariant": "^2.2.4"
   },
