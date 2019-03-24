@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="lib/fiberize.browser.js"></script>
+  <style>
+    p {
+      margin: 0;
+      font-size: 8pt;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body style="height: 100vh; padding: 0; margin: 0;">
+  <div id="console" style="position: absolute;">
+  </div>
+  <div id="box" style="background: red; position: relative; width: 100px; height: 100px;"></div>
+  <script>
+    const boxEl = document.getElementById('box');
+    const consoleEl = document.getElementById('console');
+    
+    let vx = 10;
+    let vy = 10;
+    let x = 0;
+    let y = 0;
+
+    function animation() {
+      const rect = document.body.getClientRects()[0];
+
+      x += vx;
+      y += vy;
+
+      if (x <= 0 || (x + 100) > rect.width) {
+        vx *= -1;
+      }
+
+      if (y <= 0 || (y + 100) > rect.height) {
+        vy *= -1;
+      }
+
+      boxEl.style.left = x + 'px';
+      boxEl.style.top = y + 'px';
+
+      requestAnimationFrame(animation);
+    }
+
+    animation();
+
+    function* fib(n) {
+      if (n <= 2) {
+        return 1;
+      }
+
+      return (yield fib(n - 1)) + (yield fib(n - 2));
+    }
+
+    function* main() {
+      for (let i = 1; i < 40; i++) {
+        const res = yield fib(i);
+        
+        // print result to screen.
+        (function () {
+          const p = document.createElement('p');
+          p.innerText = `fib(${i}) = ${res}`;
+          consoleEl.appendChild(p);
+        })();
+      }
+    }
+
+    fiberize.run(main());
+    fiberize.executeWhileIdle();
+  </script>
+</body>
+</html>
