@@ -61,7 +61,7 @@ setInterval(function () {
 
 When you run this, you should see the program keeps printing the fibonacci results, while the main loop is still ready to response (the timer is working).
 
-## What is Behind This?
+## Behind the Scene
 
 If you take a look at the `executeWhileIdle` function:
 
